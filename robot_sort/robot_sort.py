@@ -96,9 +96,42 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # robot starts at the first item in the list
+        self.swap_item()
+        # see if i can move right
+        while self.can_move_right():
+            # i can move right so lets go we need to be moving the biggest to the end
+            # is the current location bigger than what i am holding?
+            # yes? swap
+            if self.compare_item() == -1:
+                self.swap_item()
+            # after swapping move right
+            self.move_right()
+            # # if i am holding none and i can move right what does this mean
+            # # it means we just barly started moving right after going left so swap after moving right
+            # if self.compare_item() == None:
+            #     self.swap_item()
+        while self.can_move_left() and self.compare_item() is not None:
+            # check if im at the end of the list
+            if not self.can_move_right():
+                print('im at the end')
+                # if i am at the end of the list i check if the item im holding is the largest
+                if self.compare_item() == 1:
+                    self.swap_item()
 
+            self.move_left()
+            # am i at the none?
+            if self.compare_item() == None:
+                print('im at the none')
+                self.swap_item()
+            # move left
+            # held item is greater than location
+            if self.compare_item() == 1:
+                # swap the item
+                self.swap_item()
+        if self.compare_item() == None and self.can_move_right():
+            self.sort()
+        
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
