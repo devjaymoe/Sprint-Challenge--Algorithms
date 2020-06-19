@@ -97,13 +97,18 @@ class SortingRobot:
         Sort the robot's list.
         """
         # robot starts at the first item in the list
-        self.swap_item()
+        # self.swap_item()
         # see if i can move right
+        if self.can_move_right() == False and self.compare_item == None:
+            return
         while self.can_move_right():
             # i can move right so lets go we need to be moving the biggest to the end
             # is the current location bigger than what i am holding?
             # yes? swap
             if self.compare_item() == -1:
+                self.swap_item()
+            
+            if self.compare_item() == None:
                 self.swap_item()
             # after swapping move right
             self.move_right()
